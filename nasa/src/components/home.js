@@ -44,23 +44,27 @@ function Home() {
 
   async function onRandomAsteroid() {
 
-    const service = await axios.get("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=DEMO_KEY");
+    try {
+      const service = await axios.get("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=DEMO_KEY");
 
-    console.log("Data is ", service.data);
+      console.log("Data is ", service.data);
 
-    if (service.error) {
-      alert("Error : " + service.error.message);
-    } else if (service.data?.near_earth_objects && Array.isArray(service.data?.near_earth_objects)) {
+      if (service.error) {
+        alert("Error : " + service.error.message);
+      } else if (service.data?.near_earth_objects && Array.isArray(service.data?.near_earth_objects)) {
 
-      var asteroids = service.data?.near_earth_objects;
-      var asteroid = asteroids[Math.floor(Math.random() * asteroids.length)];
+        var asteroids = service.data?.near_earth_objects;
+        var asteroid = asteroids[Math.floor(Math.random() * asteroids.length)];
 
-      getAsteroidWithId(asteroid.id);
+        getAsteroidWithId(asteroid.id);
 
-    } else {
-      alert("Error : Unknown Error Occured");
-    }
+      } else {
+        alert("Error : Unknown Error Occured");
+      }
 
+    } catch (e) {
+      alert(`Error` + e.message);
+    };
   }
 
   return (
