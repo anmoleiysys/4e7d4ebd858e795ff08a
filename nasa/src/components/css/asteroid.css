@@ -1,0 +1,12 @@
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+}
+
+.asteroid-details{
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
